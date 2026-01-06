@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZYNTHÉ — Tradition, distilled for modern life</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #F5F3EE;
+            --charcoal: #1A1A1A;
+            --warm-amber: #D4A574;
+            --deep-amber: #B8885A;
+            --celadon: #A8B5A5;
+            --warm-wood: #8B6F47;
+            --soft-shadow: rgba(0, 0, 0, 0.08);
+            --light-border: rgba(0, 0, 0, 0.06);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.8;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            line-height: 1.15;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        h3 {
+            font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: clamp(1.05rem, 1.6vw, 1.15rem);
+            max-width: 65ch;
+            line-height: 1.9;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(245, 243, 238, 0.92);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--light-border);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            letter-spacing: 0.18em;
+            font-weight: 300;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo-mark {
+            width: 32px;
+            height: 32px;
+            background: var(--charcoal);
+            border-radius: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-size: 0.92rem;
+            letter-spacing: 0.08em;
+            transition: color 0.3s;
+            font-weight: 400;
+        }
+
+        .nav-links a:hover {
+            color: var(--warm-amber);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10rem 4rem 6rem;
+            background: linear-gradient(135deg, var(--cream) 0%, #F0EDE6 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            margin-bottom: 1.8rem;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+            color: var(--celadon);
+            margin-bottom: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        .btn {
+            padding: 1.1rem 2.8rem;
+            border: 1.5px solid var(--charcoal);
+            background: transparent;
+            color: var(--charcoal);
+            text-decoration: none;
+            font-size: 0.92rem;
+            letter-spacing: 0.12em;
+            cursor: pointer;
+            transition: all 0.35s ease;
+            font-weight: 400;
+        }
+
+        .btn:hover {
+            background: var(--charcoal);
+            color: var(--cream);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px var(--soft-shadow);
+        }
+
+        .btn-primary {
+            background: var(--charcoal);
+            color: var(--cream);
+        }
+
+        .btn-primary:hover {
+            background: var(--warm-wood);
+            border-color: var(--warm-wood);
+        }
+
+        /* Sections */
+        section {
+            padding: 8rem 4rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-intro {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-intro p {
+            margin: 0 auto;
+            color: var(--celadon);
+        }
+
+        /* Image Section */
+        .image-section {
+            background: white;
+            padding: 0;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .ambient-image {
+            width: 100%;
+            height: 60vh;
+            object-fit: cover;
+            opacity: 0.95;
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            margin: 0 auto 2rem;
+            font-size: 1.15rem;
+            line-height: 2;
+        }
+
+        .about-emphasis {
+            font-size: 1.25rem;
+            color: var(--warm-wood);
+            font-weight: 400;
+            margin-top: 3rem;
+        }
+
+        /* Values Grid */
+        .values-section {
+            background: white;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 4rem 3rem;
+            margin-top: 5rem;
+        }
+
+        .value-item h3 {
+            color: var(--warm-amber);
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .value-item p {
+            color: var(--charcoal);
+            line-height: 1.9;
+        }
+
+        /* Product Innovation */
+        .innovation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            margin-top: 5rem;
+        }
+
+        .product-showcase {
+            position: relative;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #ECEAE4 0%, #F5F3EE 100%);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px var(--soft-shadow);
+        }
+
+        .product-showcase img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-details h3 {
+            margin-bottom: 2.5rem;
+            font-size: 1.8rem;
+        }
+
+        .product-steps {
+            list-style: none;
+            counter-reset: step;
+        }
+
+        .product-steps li {
+            counter-increment: step;
+            padding: 1.5rem 0;
+            padding-left: 3.5rem;
+            position: relative;
+            border-bottom: 1px solid var(--light-border);
+        }
+
+        .product-steps li:last-child {
+            border-bottom: none;
+        }
+
+        .product-steps li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 1.5rem;
+            color: var(--warm-amber);
+            font-size: 1.4rem;
+            font-weight: 300;
+        }
+
+        .product-note {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(168, 181, 165, 0.08);
+            border-left: 2px solid var(--celadon);
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--warm-wood);
+        }
+
+        /* Why Section */
+        .why-section {
+            background: white;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .why-item {
+            padding: 3rem 2.5rem;
+            background: var(--cream);
+            border: 1px solid var(--light-border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .why-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px var(--soft-shadow);
+        }
+
+        .why-item h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
+            color: var(--charcoal);
+            font-weight: 400;
+        }
+
+        .why-item p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--warm-wood);
+        }
+
+        /* Heritage Section */
+        .heritage-content {
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .heritage-content p {
+            margin: 0 auto;
+            font-size: 1.2rem;
+            line-height: 2.1;
+            color: var(--warm-wood);
+        }
+
+        /* Ethics Section */
+        .ethics-section {
+            background: white;
+        }
+
+        .ethics-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .commitment-list {
+            list-style: none;
+            margin-top: 3rem;
+        }
+
+        .commitment-list li {
+            padding: 1.8rem 0 1.8rem 2.5rem;
+            border-bottom: 1px solid var(--light-border);
+            position: relative;
+            font-size: 1.08rem;
+        }
+
+        .commitment-list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--warm-amber);
+            font-weight: 300;
+        }
+
+        .commitment-list li:last-child {
+            border-bottom: none;
+        }
+
+        .ethics-note {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(212, 165, 116, 0.06);
+            text-align: center;
+            font-style: italic;
+            color: var(--warm-wood);
+        }
+
+        /* Culture Section */
+        .culture-principles {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .principle {
+            padding: 2.5rem;
+            background: white;
+            border-left: 3px solid var(--warm-amber);
+            box-shadow: 0 2px 12px var(--soft-shadow);
+        }
+
+        .principle h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.6rem;
+            font-weight: 400;
+        }
+
+        .principle p {
+            color: var(--warm-wood);
+            font-size: 1.05rem;
+        }
+
+        .culture-philosophy {
+            text-align: center;
+            margin-top: 5rem;
+            padding: 3rem;
+            background: rgba(168, 181, 165, 0.06);
+            border-radius: 2px;
+        }
+
+        .culture-philosophy p {
+            margin: 0 auto;
+            color: var(--warm-wood);
+            font-size: 1.1rem;
+        }
+
+        /* Operations Section */
+        .operations-section {
+            background: white;
+        }
+
+        .operations-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            margin-top: 4rem;
+        }
+
+        .operation-block h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            color: var(--charcoal);
+            font-weight: 400;
+        }
+
+        .operation-block p {
+            margin-bottom: 2rem;
+            line-height: 1.9;
+        }
+
+        /* Timeline */
+        .timeline {
+            max-width: 800px;
+            margin: 5rem auto 0;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--warm-amber) 0%, var(--celadon) 100%);
+        }
+
+        .timeline-item {
+            margin-bottom: 3.5rem;
+            padding-left: 3.5rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 0.6rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--warm-amber);
+            border: 2px solid var(--cream);
+        }
+
+        .timeline-item h3 {
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+            font-weight: 400;
+        }
+
+        .timeline-item p {
+            color: var(--warm-wood);
+            line-height: 1.8;
+        }
+
+        /* Funding Section */
+        .funding-section {
+            background: white;
+        }
+
+        .funding-content {
+            max-width: 750px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .funding-list {
+            list-style: none;
+            margin: 3rem auto;
+            text-align: left;
+            max-width: 500px;
+        }
+
+        .funding-list li {
+            padding: 1.2rem 0 1.2rem 2.5rem;
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        .funding-list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--warm-amber);
+        }
+
+        .funding-note {
+            margin-top: 4rem;
+            font-style: italic;
+            color: var(--celadon);
+            font-size: 1.1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--cream) 0%, #ECEAE4 100%);
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            margin-bottom: 2rem;
+        }
+
+        .cta-content p {
+            margin: 0 auto 3.5rem;
+            color: var(--warm-wood);
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 6rem 4rem 3rem;
+            background: white;
+            border-top: 1px solid var(--light-border);
+            text-align: center;
+        }
+
+        .footer-manifesto {
+            max-width: 650px;
+            margin: 0 auto 3.5rem;
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: var(--warm-wood);
+            font-style: italic;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2.5rem 0;
+        }
+
+        .footer-links a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.08em;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--warm-amber);
+        }
+
+        .copyright {
+            margin-top: 3.5rem;
+            font-size: 0.82rem;
+            color: var(--celadon);
+            letter-spacing: 0.12em;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .nav-container {
+                padding: 1.2rem 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 5rem 2rem;
+            }
+
+            .hero {
+                padding: 8rem 2rem 5rem;
+            }
+
+            .innovation-grid,
+            .why-grid,
+            .culture-principles,
+            .operations-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .values-grid {
+                gap: 3rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::selection {
+            background: var(--warm-amber);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-mark"></div>
+                ZYNTHÉ
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#values">Values</a></li>
+                <li><a href="#innovation">Innovation</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Tea, reimagined.</h1>
+            <p class="hero-subtitle">Tradition, distilled for modern life.</p>
+            <div class="hero-cta">
+                <a href="#about" class="btn btn-primary">Explore ZYNTHÉ</a>
+                <a href="#innovation" class="btn">How It Works</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ambient Image -->
+    <div class="image-section">
+        <img src="https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=1200&q=90" alt="Tea ceremony" class="ambient-image">
+    </div>
+
+    <!-- What is ZYNTHÉ -->
+    <section id="about">
+        <div class="container">
+            <div class="about-content">
+                <h2>What is ZYNTHÉ</h2>
+                <p>Tea is not a beverage. It is a ritual of pause in a world addicted to speed. ZYNTHÉ exists to protect the soul of tea, remove inefficiencies, and offer calm in engineered form.</p>
+                <p>We are a next-generation tea innovation company modernizing tea consumption while preserving cultural integrity. We are not disrupting tea. We are distilling it.</p>
+                <p class="about-emphasis">A synthesis of "Zen" — calm, ritual, balance — and "Synthesis" — innovation, precision, engineering.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values -->
+    <section id="values" class="values-section">
+        <div class="container">
+            <div class="section-intro">
+                <h2>Our Values</h2>
+                <p>The principles that guide every decision we make.</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-item">
+                    <h3>Respect for Tradition</h3>
+                    <p>Innovation must never erase heritage. Every ZYNTHÉ product begins with cultural research and historical respect.</p>
+                </div>
+                <div class="value-item">
+                    <h3>Precision Over Excess</h3>
+                    <p>We value clarity, accuracy, and consistency. No unnecessary features. No decorative noise.</p>
+                </div>
+                <div class="value-item">
+                    <h3>Conscious Innovation</h3>
+                    <p>We innovate only where it improves human experience, health, or sustainability.</p>
+                </div>
+                <div class="value-item">
+                    <h3>Integrity by Design</h3>
+                    <p>Transparency in sourcing, production, and communication is non-negotiable.</p>
+                </div>
+                <div class="value-item">
+                    <h3>Calm as Competitive Advantage</h3>
+                    <p>In a loud market, restraint is power.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Innovation -->
+    <section id="innovation">
+        <div class="container">
+            <div class="section-intro">
+                <h2>The Innovation</h2>
+                <p>Tea Resin Cubes — concentrated, solid tea extracts designed for instant dissolution.</p>
+            </div>
+            <div class="innovation-grid">
+                <div class="product-showcase">
+                    <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&q=90" alt="Tea resin cube">
+                </div>
+                <div class="product-details">
+                    <h3>How It Works</h3>
+                    <ol class="product-steps">
+                        <li>Drop cube into cup</li>
+                        <li>Add hot water</li>
+                        <li>Stir gently</li>
+                        <li>Experience clarity</li>
+                    </ol>
+                    <div class="product-note">
+                        Eliminates tea bags, leaves, and residue. Ensures dosage consistency. Ritual preserved, friction removed.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why ZYNTHÉ -->
+    <section class="why-section">
+        <div class="container">
+            <div class="section-intro">
+                <h2>Why This Exists</h2>
+                <p>Problems identified. Solutions engineered.</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-item">
+                    <h3>No tea bags</h3>
+                    <p>Standardized extraction eliminates brewing inconsistency.</p>
+                </div>
+                <div class="why-item">
+                    <h3>No waste</h3>
+                    <p>Reduced waste footprint through concentrated form.</p>
+                </div>
+                <div class="why-item">
+                    <h3>No waiting</h3>
+                    <p>Instant dissolution designed for modern environments.</p>
+                </div>
+                <div class="why-item">
+                    <h3>No compromise</h3>
+                    <p>Controlled concentration maintains tea integrity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Heritage -->
+    <section>
+        <div class="container">
+            <div class="heritage-content">
+                <h2>Rooted in Heritage</h2>
+                <p>Bangladesh carries centuries of tea cultivation expertise. ZYNTHÉ emerges from this legacy, not in opposition to it. We are an evolution of tradition, applying modern precision to ancestral knowledge. Every product begins with respect for the origin.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ethics -->
+    <section class="ethics-section">
+        <div class="container">
+            <div class="section-intro">
+                <h2>Ethics & Responsibility</h2>
+            </div>
+            <div class="ethics-content">
+                <h3>Ethical Commitments</h3>
+                <ul class="commitment-list">
+                    <li>No exploitative sourcing</li>
+                    <li>Respect for labor dignity</li>
+                    <li>Fair treatment of partners</li>
+                    <li>Honest representation of benefits and limitations</li>
+                </ul>
+
+                <h3 style="margin-top: 4rem;">Environmental Responsibility</h3>
+                <ul class="commitment-list">
+                    <li>Reduced waste footprint</li>
+                    <li>Long-term goal: biodegradable or reusable packaging</li>
+                    <li>Continuous waste-reduction audits</li>
+                </ul>
+
+                <div class="ethics-note">
+                    No greenwashing. Only measurable intention.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Culture -->
+    <section>
+        <div class="container">
+            <div class="section-intro">
+                <h2>Company Culture</h2>
+                <p>ZYNTHÉ operates like a studio, not a factory.</p>
+            </div>
+            <div class="culture-principles">
+                <div class="principle">
+                    <h3>Thoughtful Pace</h3>
+                    <p>Over rushed decisions</p>
+                </div>
+                <div class="principle">
+                    <h3>Documentation</h3>
+                    <p>Before execution</p>
+                </div>
+                <div class="principle">
+                    <h3>Quality</h3>
+                    <p>Before scale</p>
+                </div>
+                <div class="principle">
+                    <h3>Learning</h3>
+                    <p>Over ego</p>
+                </div>
+            </div>
+            <div class="culture-philosophy">
+                <p>Every decision passes through: Purpose check. Cultural check. Impact check.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Operations -->
+    <section class="operations-section">
+        <div class="container">
+            <div class="section-intro">
+                <h2>Operations Overview</h2>
+            </div>
+            <div class="operations-grid">
+                <div class="operation-block">
+                    <h3>Operational Model</h3>
+                    <p>Lean core team. Modular production pipeline. Scalable manufacturing partnerships. Centralized quality control.</p>
+                </div>
+                <div class="operation-block">
+                    <h3>Key Pillars</h3>
+                    <ul class="commitment-list">
+                        <li>R&D and formulation</li>
+                        <li>Quality assurance</li>
+                        <li>Packaging engineering</li>
+                        <li>Brand and experience design</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="max-width: 700px; margin: 4rem auto 0; text-align: center;">
+                <h3>Decision-Making Framework</h3>
+                <p style="margin-top: 1.5rem; font-size: 1.1rem;">Data-informed. Ethically reviewed. Long-term oriented.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section id="roadmap">
+        <div class="container">
+            <div class="section-intro">
+                <h2>Roadmap</h2>
+                <p>A measured path forward.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Research & Formulation</h3>
+                    <p>Cultural research, ingredient validation, formulation testing</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Prototype Validation</h3>
+                    <p>Stability testing, dissolution analysis, sensory evaluation</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Pilot Production</h3>
+                    <p>Batch consistency, quality control systems, storage stability</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Brand & Regulatory Readiness</h3>
+                    <p>Compliance, packaging engineering, brand infrastructure</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Strategic Partnerships</h3>
+                    <p>Distribution alignment, accelerator engagement, grant applications</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Scaled Manufacturing</h3>
+                    <p>Production capacity expansion, supply chain optimization</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Funding -->
+    <section class="funding-section">
+        <div class="container">
+            <div class="funding-content">
+                <h2>Funding Intent</h2>
+                <p>Why we're raising.</p>
+                <ul class="funding-list">
+                    <li>R&D refinement</li>
+                    <li>Pilot production</li>
+                    <li>Quality systems</li>
+                    <li>Packaging engineering</li>
+                    <li>Brand infrastructure</li>
+                </ul>
+                <p class="funding-note">No hype. No fake urgency. Just clarity.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Join the quiet revolution of tea.</h2>
+                <p>For investor inquiries, partnership opportunities, or further information.</p>
+                <div class="hero-cta">
+                    <a href="mailto:contact@synthe.com" class="btn btn-primary">Get in Touch</a>
+                    <a href="#" class="btn">Download Investment Deck</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-manifesto">
+            "Tea is not a beverage. It is a ritual of pause in a world addicted to speed."
+        </div>
+        <div class="footer-links">
+            <a href="#about">About</a>
+            <a href="#values">Values</a>
+            <a href="#innovation">Innovation</a>
+            <a href="#roadmap">Roadmap</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="copyright">
+            © 2026 ZYNTHÉ — TRADITION, DISTILLED FOR MODERN LIFE
+        </div>
+    </footer>
+</body>
+</html>
