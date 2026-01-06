@@ -1,2 +1,2 @@
-# ZYNTH-
+# ZYNTHÉ
 Modern Tea Experience Hub
